@@ -126,7 +126,7 @@ export default {
   methods: {
     gotoDetail() {
       this.$router.push({
-        path: `/about`
+        path: `/todo`
       })
     }
   }

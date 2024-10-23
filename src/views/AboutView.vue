@@ -1,35 +1,46 @@
 <template>
-  <div class="detail">
-    <div class="detal_header">
-      <div class="userName">余先生</div>
-      <div class="phone"><span>电话：</span><span>13122334445</span></div>
+  <div>
+    <div class="markdown-editor">
+      <textarea v-model="newNoteText"></textarea>
+      <button @click="addNote">添加笔记</button>
     </div>
-    <div class="content">
-      <div class="left">
-        
-      </div>
-      <div class="right"></div>
-    </div>
+    <div
+      class="markdown-content"
+      v-if="notes.length > 0"
+      v-html="md.render(notes[index].content)"
+    ></div>
   </div>
 </template>
 
 <script>
+import MarkdownIt from 'markdown-it'
 
 export default {
-  components: {
-  },
-  name: "AboutView",
-  data: function() {
-    return {};
-  },
-  mounted() {},
-  watch: {
-  },
-  created() {
-  },
-  computed: {
+  data() {
+    return {
+      md: new MarkdownIt(),
+      newNoteText: '',
+      notes: [],
+      index:0
+    }
   },
   methods: {
+    addNote() {
+      if (this.newNoteText.length > 0) {
+        this.notes.push({ content: this.newNoteText, todos: [] })
+        this.newNoteText = ''
+      }
+    }
   }
-};
+}
 </script>
+
+<style lang="scss" scoped>
+.markdown-editor {
+  margin-bottom: 20px;
+}
+.markdown-content {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+</style>
