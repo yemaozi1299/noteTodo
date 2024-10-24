@@ -192,7 +192,7 @@
             <!-- 添加 addTodo 组件 -->
             <div class="addTodo">
               <el-input
-                v-model="newNoteTodoText"
+                v-model="newSubTodoText"
                 placeholder="请输入子项目内容"
                 @keyup.enter.native="addSubTodo"
               ></el-input>
